@@ -1,0 +1,20 @@
+---
+- name: Common - pre-provisioning task(s)
+  hosts: all
+  become: true
+  gather_facts: false
+
+  tasks:
+
+    - name: Setup ttyless sudo for pipelining 
+      lineinfile:
+        dest: /etc/sudoers
+        line: 'Defaults requiretty'
+        state: absent
+
+    - name: Enable repos for three-tier-app
+      copy:
+        src: ../open_three-tier-app.repo
+        dest: /etc/yum.repos.d/open_three-tier-app.repo
+        mode: 0644
+...
