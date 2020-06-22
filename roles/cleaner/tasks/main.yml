@@ -14,22 +14,20 @@
     path: /etc/yum.repos.d/open_three-tier-app.repo
 
 - name: remove base tools and three tier app packages
-  yum:
-    name: "{{ item }}"
+  package:
+    name: "{{ package }}"
     state: absent
-  with_items:
+  loop:
     - httpie
     - python-pip
     - haproxy
     - tomcat
     - postgresql-server
+  loop_control:
+    loop_var: package
 
-#- name: Copy placeholder index.html
-# template:
-#    src: /dev/null
-#    dest: /tmp/index.html
 
 - name: Remove index.html
   file:
     state: absent
-    path: /tmp/index.html
+    path: /usr/share/tomcat/webapps/ROOT/index.html
