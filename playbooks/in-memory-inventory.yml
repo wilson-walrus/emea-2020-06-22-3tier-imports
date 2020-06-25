@@ -1,6 +1,6 @@
 ---
 - name: In-Memory inventory playbook
-  hosts: localhost
+  hosts: workstation
   tasks:
     - name: Fetch Instance Info
       os_server_info:
