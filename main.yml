@@ -1,4 +1,8 @@
 ---
+- name: Create In-Memory Inventory
+  hosts: workstation
+  import_playbook: playbooks/in-memory-inventory.yml
+
 - name: Run common setup
   import_playbook: playbooks/common.yml
 
